@@ -1,0 +1,514 @@
+/* =========================================================
+   VARIABLES DE TEMA — paleta "café"
+   ========================================================= */
+:root {
+  --cafe-950: #2a1810;
+  --cafe-900: #3b2418;
+  --cafe-800: #4b2e1e;
+  --cafe-700: #5b3a29;
+  --cafe-600: #7a4f36;
+  --cafe-500: #8a5a3c;
+  --cafe-caramelo: #c9822e;
+  --cafe-caramelo-claro: #e0a458;
+  --crema-100: #fff8ec;
+  --crema-200: #f7ecd9;
+  --crema-300: #efe0c4;
+  --verde-eco: #2e7d32;
+  --verde-eco-claro: #4caf50;
+  --azul-seleccion: #1f77b4;
+  --texto: #2e2015;
+  --texto-suave: #6b5645;
+  --sombra: 0 8px 24px rgba(59, 36, 24, 0.14);
+  --sombra-fuerte: 0 14px 34px rgba(59, 36, 24, 0.22);
+  --radio: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   FONDO GENERAL — degradado café + "manchas" hechas con CSS
+   (no requiere ninguna imagen externa)
+   ========================================================= */
+html, body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--texto);
+  background-color: var(--cafe-900);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(201, 130, 46, 0.35), transparent 38%),
+    radial-gradient(circle at 85% 10%, rgba(139, 90, 60, 0.4), transparent 42%),
+    radial-gradient(circle at 90% 80%, rgba(46, 125, 50, 0.18), transparent 40%),
+    radial-gradient(circle at 8% 85%, rgba(224, 164, 88, 0.25), transparent 40%),
+    linear-gradient(160deg, var(--cafe-950) 0%, var(--cafe-800) 45%, var(--cafe-700) 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Textura sutil de "granos" flotando sobre el fondo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(ellipse 5px 8px at 10% 20%, rgba(0,0,0,0.25), transparent 60%),
+    radial-gradient(ellipse 4px 7px at 80% 15%, rgba(0,0,0,0.2), transparent 60%),
+    radial-gradient(ellipse 6px 9px at 60% 70%, rgba(0,0,0,0.18), transparent 60%),
+    radial-gradient(ellipse 4px 6px at 25% 85%, rgba(0,0,0,0.2), transparent 60%),
+    radial-gradient(ellipse 5px 8px at 92% 60%, rgba(0,0,0,0.15), transparent 60%),
+    radial-gradient(ellipse 4px 7px at 45% 35%, rgba(0,0,0,0.15), transparent 60%);
+  background-repeat: repeat;
+  background-size: 340px 340px;
+}
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+.app-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+/* =========================================================
+   TARJETAS — efecto "glass" cálido
+   ========================================================= */
+.card {
+  background: rgba(255, 248, 236, 0.94);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(139, 90, 60, 0.15);
+  border-radius: var(--radio);
+  padding: 24px;
+  box-shadow: var(--sombra);
+  margin-bottom: 24px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: var(--sombra-fuerte);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   TIPOGRAFÍA
+   ========================================================= */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', 'Segoe UI', serif;
+  color: var(--cafe-900);
+  letter-spacing: 0.2px;
+}
+
+h1 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--cafe-800), var(--cafe-caramelo) 60%, var(--verde-eco));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+h2 {
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--crema-300);
+  padding-bottom: 8px;
+  margin-top: 0;
+}
+
+h3 { font-size: 1.15rem; }
+
+p { color: var(--texto-suave); line-height: 1.55; }
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+.app-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 8px 12px 4px;
+}
+
+.app-header .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(46, 125, 50, 0.12);
+  color: var(--verde-eco);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.app-header p {
+  max-width: 680px;
+  margin: 10px auto 0;
+  color: var(--crema-200);
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+button {
+  background: linear-gradient(135deg, var(--verde-eco-claro), var(--verde-eco));
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 6px 18px rgba(46, 125, 50, 0.45);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: #b8ac9c;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Botón secundario (ej: "Limpiar") */
+button.secundario,
+button[style*="8a7a68"] {
+  background: linear-gradient(135deg, var(--cafe-500), var(--cafe-700)) !important;
+  box-shadow: 0 4px 14px rgba(91, 58, 41, 0.35) !important;
+}
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 6px 0 14px 0;
+  border: 1.5px solid var(--crema-300);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--crema-100);
+  color: var(--texto);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--cafe-caramelo);
+  box-shadow: 0 0 0 3px rgba(201, 130, 46, 0.18);
+}
+
+label {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--cafe-700);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* =========================================================
+   TABS
+   ========================================================= */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  background: rgba(255, 248, 236, 0.85);
+  color: var(--cafe-800);
+  font-weight: 600;
+  border: 1.5px solid rgba(139, 90, 60, 0.2);
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  background: rgba(255, 248, 236, 1);
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  background: linear-gradient(135deg, var(--cafe-caramelo-claro), var(--cafe-caramelo));
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(201, 130, 46, 0.4);
+}
+
+/* =========================================================
+   TARJETAS DE RUTA
+   ========================================================= */
+.ruta-card {
+  border: 2px solid var(--crema-300);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+  background: var(--crema-100);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ruta-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 36, 24, 0.12);
+}
+
+.ruta-card.recomendada {
+  border-color: var(--verde-eco);
+  background: linear-gradient(135deg, #eef7ee, #f3faf0);
+  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.22);
+}
+
+.ruta-card.seleccionada {
+  border-color: var(--azul-seleccion);
+  background: linear-gradient(135deg, #eaf3fb, #f0f7fc);
+}
+
+/* =========================================================
+   BADGES DE ESTADO DE VÍA
+   ========================================================= */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: white;
+  margin-left: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.badge.bueno { background: linear-gradient(135deg, #4caf50, #2e7d32); }
+.badge.regular { background: linear-gradient(135deg, #e0a458, #c9822e); }
+.badge.malo { background: linear-gradient(135deg, #e05a4e, #b03a2e); }
+
+/* =========================================================
+   INDICADORES (métricas por ruta)
+   ========================================================= */
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+@media (max-width: 700px) {
+  .indicadores {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.indicador {
+  background: white;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--crema-300);
+  color: var(--texto);
+}
+
+/* =========================================================
+   SELECTOR DE CRITERIOS INDIVIDUALES (distancia, tiempo, CO2, riesgo)
+   ========================================================= */
+.criterios-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 4px 0 20px;
+}
+
+.criterio-btn {
+  background: white;
+  color: var(--cafe-800);
+  border: 1.5px solid var(--crema-300);
+  border-radius: 30px;
+  padding: 9px 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: none;
+  transition: all 0.18s ease;
+}
+
+.criterio-btn:hover:not(.activo) {
+  border-color: var(--cafe-caramelo);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(59, 36, 24, 0.1);
+}
+
+.criterio-btn.activo {
+  background: linear-gradient(135deg, var(--azul-seleccion), #16639a);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(31, 119, 180, 0.35);
+}
+
+/* Cuando el criterio activo es el ecológico, usar el verde en vez del azul
+   para que combine con el color que ya identifica a la ruta recomendada */
+.criterio-btn.activo:first-child {
+  background: linear-gradient(135deg, var(--verde-eco-claro), var(--verde-eco));
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35);
+}
+
+/* =========================================================
+   LEYENDA DE RUTAS (bajo el mapa)
+   ========================================================= */
+.leyenda-rutas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.leyenda-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: white;
+  color: var(--texto);
+  border: 1.5px solid var(--crema-300);
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.leyenda-item:hover {
+  border-color: var(--cafe-caramelo);
+  transform: translateY(-1px);
+}
+
+.leyenda-item.activa {
+  border-color: var(--azul-seleccion);
+  background: #eaf3fb;
+  box-shadow: 0 0 0 2px rgba(31, 119, 180, 0.18);
+}
+
+.leyenda-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06);
+}
+
+.ruta-card h4 .leyenda-swatch {
+  margin-right: 8px;
+}
+
+/* =========================================================
+   TABLA COMPARATIVA
+   ========================================================= */
+.tabla-comparativa {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 14px;
+  font-size: 13px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(59, 36, 24, 0.08);
+}
+
+.tabla-comparativa th,
+.tabla-comparativa td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--crema-300);
+  white-space: nowrap;
+}
+
+.tabla-comparativa th {
+  background: linear-gradient(135deg, var(--cafe-800), var(--cafe-700));
+  color: var(--crema-100);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+}
+
+.tabla-comparativa .fila-ruta {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.tabla-comparativa .fila-ruta:hover {
+  background: var(--crema-200);
+}
+
+.tabla-comparativa .fila-recomendada {
+  background: #eef7ee;
+  font-weight: 600;
+}
+
+.tabla-comparativa .fila-seleccionada {
+  box-shadow: inset 4px 0 0 var(--azul-seleccion);
+  background: #eaf3fb;
+}
+
+.tabla-comparativa .fila-recomendada.fila-seleccionada {
+  box-shadow: inset 4px 0 0 var(--verde-eco);
+  background: #eef7ee;
+}
+
+/* =========================================================
+   SCROLLBAR (detalle estético en navegadores webkit)
+   ========================================================= */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--crema-200);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cafe-500);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cafe-700);
+}
