@@ -1,4 +1,4 @@
-<img width="1919" height="1020" alt="Captura de pantalla 2026-07-29 222114" src="https://github.com/user-attachments/assets/e84867ed-13b9-4803-a243-450c1d92a058" />#  Ruta Ecológica para Transporte de Pulpa de Café
+#  Ruta Ecológica para Transporte de Pulpa de Café
 
 ## Problemática
 
