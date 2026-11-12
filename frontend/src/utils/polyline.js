@@ -1,17 +1,14 @@
-
-import { ListaDoble } from "./ListDobleEnlazada";
 /**
- * Decodifica una polyline codificada (formato de Google Maps) a una
- * ListaDoble de {lat, lng}.
+ * Decodifica una polyline codificada (formato de Google Maps) a un arreglo de {lat, lng}.
  * Referencia del algoritmo: https://developers.google.com/maps/documentation/utilities/polylinealgorithm
  */
 export function decodificarPolyline(encoded) {
-  const puntos = new ListaDoble();
-  if (!encoded) return puntos;
+  if (!encoded) return [];
 
   let index = 0;
   let lat = 0;
   let lng = 0;
+  const puntos = [];
 
   while (index < encoded.length) {
     let b;
@@ -35,7 +32,7 @@ export function decodificarPolyline(encoded) {
     const dlng = result & 1 ? ~(result >> 1) : result >> 1;
     lng += dlng;
 
-    puntos.agregarAlFinal({ lat: lat / 1e5, lng: lng / 1e5 });
+    puntos.push({ lat: lat / 1e5, lng: lng / 1e5 });
   }
 
   return puntos;
